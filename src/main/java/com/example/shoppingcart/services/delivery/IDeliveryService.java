@@ -7,5 +7,5 @@ public interface IDeliveryService {
      *
      * @return   amount
      */
-    double calculateFor();
+    double calculateFor(double costPerDelivery, double costByProduct);
 }

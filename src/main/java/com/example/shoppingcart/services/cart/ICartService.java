@@ -1,10 +1,24 @@
 package com.example.shoppingcart.services.cart;
 
+import com.example.shoppingcart.models.Cart;
 import com.example.shoppingcart.models.Entry;
 
 import java.util.List;
 
 public interface ICartService {
+
+    /**
+     * load cart.
+     *
+     */
+    void loadCart();
+
+    /**
+     * get cart.
+     *
+     * @return  current cart
+     */
+    Cart getCart();
 
     /**
      * find entries of cart.
