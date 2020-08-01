@@ -76,6 +76,12 @@ public interface ICartService {
     int numberOfProducts();
 
     /**
+     * display the cart entry.
+     *
+     * @return   cart entry info
+     */
+    String printCartEntries();
+    /**
      * display the cart.
      *
      * @return   cart info

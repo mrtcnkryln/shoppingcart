@@ -97,12 +97,24 @@ public class CartService implements ICartService {
     }
 
     @Override
+    public String printCartEntries() {
+        StringBuilder entries = new StringBuilder(" \n");
+        if (null != this.cart){
+            for(Entry entry : this.cart.getEntries()) {
+                entries.append(entry.toString());
+            }
+        }
+
+        return entries.toString();
+    }
+
+    @Override
     public String printCart() {
-        String cart = "Total Price: " + getTotalAmount() + " \n" +
+        return  "Cart Summary : " + printCartEntries() + " \n" +
+                      "Total Price: " + getTotalAmount() + " \n" +
                       "Coupon Discount: " + getCouponDiscount() + " \n" +
                       "Campaign Discount: " + getCampaignDiscount() + " \n" +
                       "Total Price After Discounts: " + getTotalAmountAfterDiscounts() + " \n" +
                       "Delivery Cost: " + getDeliveryCost() + " \n";
-        return cart;
     }
 }

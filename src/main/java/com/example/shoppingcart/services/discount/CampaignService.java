@@ -25,7 +25,7 @@ public class CampaignService implements ICampaignService {
             if(productCount >= campaign.getQuantity()) { // check campaign is applicable
                 switch (campaign.getDiscountType()) {
                     case Rate:
-                        double total = entries.stream().mapToDouble(o -> o.getProduct().getPrice()).sum();
+                        double total = entries.stream().mapToDouble(o -> (o.getProduct().getPrice() * o.getQuantity())).sum();
                         double discount = total * (campaign.getAmount() / 100);
                         currentDiscount = discounts.getOrDefault(campaign.getCategory().getTitle(), 0.0);
                         if(discount > currentDiscount){ //select greatest campaign for selected category

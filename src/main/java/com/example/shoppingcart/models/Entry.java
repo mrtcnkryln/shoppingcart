@@ -27,4 +27,10 @@ public class Entry {
     public void setProduct(Product product) {
         this.product = product;
     }
+
+    @Override
+    public String toString() {
+        return "product = " + product.getTitle() + ", category = " + product.getCategory().getTitle() +
+                ", quantity = " + quantity + ", unit price = " + product.getPrice() + "\n";
+    }
 }

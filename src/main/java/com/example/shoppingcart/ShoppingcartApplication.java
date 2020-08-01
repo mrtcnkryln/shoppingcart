@@ -18,33 +18,39 @@ public class ShoppingcartApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ShoppingcartApplication.class, args);
 
-		Category fruit = new Category("Fruit");
-		Category cars = new Category("Cars");
-		Category BMW = new Category("BMW", cars);
+		Category shoes = new Category("shoes");
+		Category food = new Category("food");
+		Category drink = new Category("drink", food);
 
-		Product apple = new Product("Apple", 10, fruit);
-		Product orange = new Product("Orange", 20, fruit);
-		Product e180 = new Product("E180", 2000, BMW);
+		Product nike = new Product("nike air max", 1000, shoes);
+		Product adidas = new Product("adidas stan smith", 500, shoes);
+		Product sprite = new Product("sprite", 10, drink);
+		Product fanta = new Product("fanta", 15, drink);
+		Product icecream = new Product("ice cream", 20, food);
 
-		Entry entryApple = new Entry(10, apple);
-		Entry entryOrange = new Entry(20, orange);
-		Entry entryE180 = new Entry(1, e180);
+		Entry entryNike = new Entry(2, nike);
+		Entry entryAdidas = new Entry(1, adidas);
+		Entry entrySprite = new Entry(10, sprite);
+		Entry entryFanta = new Entry(5, fanta);
+		Entry entryIcecream = new Entry(8, icecream);
 
 		List<Entry> entryList = new ArrayList<>();
-		entryList.add(entryApple);
-		entryList.add(entryOrange);
-		entryList.add(entryE180);
+		entryList.add(entryNike);
+		entryList.add(entryAdidas);
+		entryList.add(entrySprite);
+		entryList.add(entryFanta);
+		entryList.add(entryIcecream);
 
-		Campaign campaignfruit1 = new Campaign(fruit, 10, 10, DiscountType.Rate);
-		Campaign campaignfruit2 = new Campaign(fruit, 10, 29, DiscountType.Amount);
-		Campaign campaignBMW = new Campaign(BMW, 2, 40, DiscountType.Rate);
+		Campaign campaignDrinkRate = new Campaign(drink, 10, 10, DiscountType.Rate);
+		Campaign campaignDrinkAmount = new Campaign(drink, 50, 12, DiscountType.Amount);
+		Campaign campaignShoes = new Campaign(shoes, 5, 2, DiscountType.Rate);
 
 		List<Campaign> campaignList = new ArrayList<>();
-		campaignList.add(campaignfruit1);
-		campaignList.add(campaignfruit2);
-		campaignList.add(campaignBMW);
+		campaignList.add(campaignDrinkRate);
+		campaignList.add(campaignDrinkAmount);
+		campaignList.add(campaignShoes);
 
-		Coupon coupon = new Coupon(150, 25, DiscountType.Amount);
+		Coupon coupon = new Coupon(1000, 250, DiscountType.Amount);
 
 		Cart cart = new Cart(entryList, campaignList, coupon);
 
