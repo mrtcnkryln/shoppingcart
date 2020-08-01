@@ -57,7 +57,6 @@ public interface ICartService {
 
     /**
      * delivery cost.
-     *
      * @return   amount
      */
     double getDeliveryCost();
@@ -75,4 +74,11 @@ public interface ICartService {
      * @return   quantity
      */
     int numberOfProducts();
+
+    /**
+     * display the cart.
+     *
+     * @return   cart info
+     */
+    String printCart();
 }

@@ -7,13 +7,18 @@ import com.example.shoppingcart.services.delivery.IDeliveryService;
 import com.example.shoppingcart.services.discount.ICampaignService;
 import com.example.shoppingcart.services.discount.ICouponService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class CartService implements ICartService {
 
     private Cart cart;
+
+    public CartService() {
+    }
 
     @Autowired
     ICouponService couponService;
@@ -42,7 +47,7 @@ public class CartService implements ICartService {
     @Override
     public double getTotalAmount() {
         if (null != this.cart){
-            this.cart.getEntries().stream().mapToDouble(o -> o.getProduct().getPrice()).sum();
+            return this.cart.getEntries().stream().mapToDouble(o -> (o.getProduct().getPrice() * o.getQuantity())).sum();
         }
         return 0;
     }
@@ -59,7 +64,7 @@ public class CartService implements ICartService {
     public double getCouponDiscount() {
         if (null != this.cart){
             double totalAfterCampaignDiscount = getTotalAmount() - getCampaignDiscount();
-            couponService.couponDiscount(totalAfterCampaignDiscount, this.cart.getCoupon());
+            return couponService.couponDiscount(totalAfterCampaignDiscount, this.cart.getCoupon());
         }
         return 0;
     }
@@ -67,7 +72,7 @@ public class CartService implements ICartService {
     @Override
     public double getCampaignDiscount() {
         if (null != this.cart){
-            campaignService.campaignDiscount(this.cart.getCampaigns());
+            return campaignService.campaignDiscount(this.cart.getCampaigns());
         }
         return 0;
     }
@@ -89,5 +94,15 @@ public class CartService implements ICartService {
     @Override
     public int numberOfProducts() {
         return null == this.cart ? 0 : this.cart.getEntries().size();
+    }
+
+    @Override
+    public String printCart() {
+        String cart = "Total Price: " + getTotalAmount() + " \n" +
+                      "Coupon Discount: " + getCouponDiscount() + " \n" +
+                      "Campaign Discount: " + getCampaignDiscount() + " \n" +
+                      "Total Price After Discounts: " + getTotalAmountAfterDiscounts() + " \n" +
+                      "Delivery Cost: " + getDeliveryCost() + " \n";
+        return cart;
     }
 }

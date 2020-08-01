@@ -1,13 +1,15 @@
 package com.example.shoppingcart.services.category;
 
 import com.example.shoppingcart.models.Category;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CategoryService implements ICategoryService {
 
     @Override
     public boolean isSubCategory(Category first, Category second) {
         Category parent = first.getParent();
-        while (null != parent) {
+        while (null != parent) { //check all possible parent objects
             if(first.getTitle().equals(parent.getTitle())){
                 return true;
             }

@@ -8,6 +8,10 @@ public class Category {
     private String title;
     private Category parent;
 
+    public Category(String title) {
+        this.title = title;
+    }
+
     public Category(String title, Category parent) {
         this.title = title;
         this.parent = parent;

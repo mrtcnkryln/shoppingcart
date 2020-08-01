@@ -1,7 +1,9 @@
 package com.example.shoppingcart.services.discount;
 
 import com.example.shoppingcart.models.Coupon;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CouponService implements ICouponService {
 
     @Override
