@@ -31,7 +31,7 @@ public class CartService implements ICartService {
 
     @Override
     public void loadCart() {
-        this.cart = CartManager.getInstance().getCart();
+        this.cart = getCart();
     }
 
     @Override
@@ -115,6 +115,6 @@ public class CartService implements ICartService {
                       "Coupon Discount: " + getCouponDiscount() + " \n" +
                       "Campaign Discount: " + getCampaignDiscount() + " \n" +
                       "Total Price After Discounts: " + getTotalAmountAfterDiscounts() + " \n" +
-                      "Delivery Cost: " + getDeliveryCost() + " \n";
+                      "Delivery Cost: " + String.format("%.2f", getDeliveryCost()) + " \n";
     }
 }

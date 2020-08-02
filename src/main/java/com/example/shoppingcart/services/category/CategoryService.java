@@ -10,7 +10,7 @@ public class CategoryService implements ICategoryService {
     public boolean isSubCategory(Category first, Category second) {
         Category parent = first.getParent();
         while (null != parent) { //check all possible parent objects
-            if(first.getTitle().equals(parent.getTitle())){
+            if(second.getTitle().equals(parent.getTitle())){
                 return true;
             }
             parent = parent.getParent();

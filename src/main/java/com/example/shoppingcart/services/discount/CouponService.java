@@ -8,7 +8,7 @@ public class CouponService implements ICouponService {
 
     @Override
     public double couponDiscount(double amount, Coupon coupon) {
-        if(amount >= coupon.getQuantity()) {
+        if(null != coupon && amount >= coupon.getQuantity()) {
             switch (coupon.getDiscountType()) {
                 case Rate:
                     return amount * (coupon.getAmount() / 100);

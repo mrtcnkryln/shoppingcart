@@ -14,8 +14,8 @@ public class DeliveryService implements IDeliveryService {
     @Override
     public double calculateFor() {
         cartService.loadCart();
-        int numberOfDeliveries = cartService.numberOfDeliveries();
-        int numberOfProducts = cartService.numberOfProducts();
+        double numberOfDeliveries = cartService.numberOfDeliveries();
+        double numberOfProducts = cartService.numberOfProducts();
         return (AppConstants.COST_PER_DELIVERY * numberOfDeliveries) + (AppConstants.COST_PER_PRODUCT * numberOfProducts) + AppConstants.FIXED_COST;
     }
 }
