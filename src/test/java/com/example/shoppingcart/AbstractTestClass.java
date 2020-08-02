@@ -19,4 +19,8 @@ public abstract class AbstractTestClass {
         cart = new Cart(new ArrayList<>(), new ArrayList<>(), null);
         CartManager.getInstance().setCart(cart);
     }
+
+    protected void clean() {
+        setUp();
+    }
 }

@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
 
 public class CartTest extends AbstractTestClass{
 
@@ -25,19 +24,16 @@ public class CartTest extends AbstractTestClass{
     }
 
     @Test
-    public void cartServiceEmptyCartReturnNull() {
-        Cart cart = cartService.getCart();
-        assertNull(cart);
-    }
-
-    @Test
     public void cartServiceReturnZeroEmptyCart() {
+        super.clean();
+        cartService.loadCart();
         double result = cartService.getTotalAmount();
         assertEquals(0, Double.compare(result, 0));
     }
 
     @Test
     public void cartServiceValidTotalAmount() {
+        super.clean();
         Category camera = new Category("camera");
         Product canon = new Product("canon", 2000, camera);
         Entry entryCanon = new Entry(2, canon);
@@ -51,12 +47,14 @@ public class CartTest extends AbstractTestClass{
 
     @Test
     public void cartServiceCampaignDiscountEmptyCartReturnZero() {
+        super.clean();
         double result = cartService.getCampaignDiscount();
         assertEquals(0, Double.compare(result, 0));
     }
 
     @Test
     public void cartServiceCampaignDiscountEmptyCampaignReturnZero() {
+        super.clean();
         Category camera = new Category("camera");
         Product canon = new Product("canon", 2000, camera);
         Entry entryCanon = new Entry(2, canon);
@@ -70,6 +68,7 @@ public class CartTest extends AbstractTestClass{
 
     @Test
     public void cartServiceCampaignDiscountReturnValid() {
+        super.clean();
         Category shoes = new Category("shoes");
         Product nike = new Product("nike air max", 500, shoes);
         Entry entry = new Entry(2, nike);
@@ -87,12 +86,14 @@ public class CartTest extends AbstractTestClass{
 
     @Test
     public void cartServiceCouponDiscountEmptyCartReturnZero() {
+        super.clean();
         double result = cartService.getCouponDiscount();
         assertEquals(0, Double.compare(result, 0));
     }
 
     @Test
     public void cartServiceCouponDiscountEmptyCouponReturnZero() {
+        super.clean();
         Category camera = new Category("camera");
         Product canon = new Product("canon", 2000, camera);
         Entry entryCanon = new Entry(2, canon);
@@ -106,6 +107,7 @@ public class CartTest extends AbstractTestClass{
 
     @Test
     public void cartServiceCouponDiscountReturnValidWithoutCampaign() {
+        super.clean();
         Category camera = new Category("camera");
         Product canon = new Product("canon", 2000, camera);
         Entry entryCanon = new Entry(2, canon);
@@ -121,6 +123,7 @@ public class CartTest extends AbstractTestClass{
 
     @Test
     public void cartServiceCouponDiscountReturnZeroBecauseOfCampaignDiscount() {
+        super.clean();
         Category camera = new Category("camera");
         Product canon = new Product("canon", 2000, camera);
         Entry entryCanon = new Entry(2, canon);
@@ -140,6 +143,7 @@ public class CartTest extends AbstractTestClass{
 
     @Test
     public void cartServiceCouponDiscountReturnValidWithCampaignDiscount() {
+        super.clean();
         Category camera = new Category("camera");
         Product canon = new Product("canon", 2000, camera);
         Entry entryCanon = new Entry(2, canon);
@@ -159,12 +163,15 @@ public class CartTest extends AbstractTestClass{
 
     @Test
     public void cartServiceTotalAmountAfterDiscountEmptyCartReturnZero() {
+        super.clean();
+        cartService.loadCart();
         double result = cartService.getTotalAmountAfterDiscounts();
         assertEquals(0, Double.compare(result, 0));
     }
 
     @Test
     public void cartServiceTotalAmountAfterDiscountReturnValidWithCampaignAndCouponDiscount() {
+        super.clean();
         Category camera = new Category("camera");
         Product canon = new Product("canon", 2000, camera);
         Entry entryCanon = new Entry(2, canon);
@@ -184,12 +191,15 @@ public class CartTest extends AbstractTestClass{
 
     @Test
     public void cartServiceNumberOfDeliveriesEmptyCartReturnZero() {
+        super.clean();
+        cartService.loadCart();
         double result = cartService.numberOfDeliveries();
         assertEquals(0, Double.compare(result, 0));
     }
 
     @Test
     public void cartServiceNumberOfDeliveriesReturnValid() {
+        super.clean();
         Category camera = new Category("camera");
         Product canon = new Product("canon", 2000, camera);
         Category shoes = new Category("shoes");
@@ -207,12 +217,15 @@ public class CartTest extends AbstractTestClass{
 
     @Test
     public void cartServiceNumberOfProductsEmptyCartReturnZero() {
+        super.clean();
+        cartService.loadCart();
         double result = cartService.numberOfProducts();
         assertEquals(0, Double.compare(result, 0));
     }
 
     @Test
     public void cartServiceNumberOfProductsReturnValid() {
+        super.clean();
         Category camera = new Category("camera");
         Product canon = new Product("canon", 2000, camera);
         Entry entryCanon = new Entry(4, canon);
